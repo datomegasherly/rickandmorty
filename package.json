@@ -2,7 +2,7 @@
   "name": "rickandmorty",
   "version": "1.0.0",
   "description": "Rick and Morty FrontEnd",
-  "main": "index.js",
+  "main": "index.tsx",
   "scripts": {
     "start": "webpack-dev-server .",
     "build": "Webpack .",
@@ -30,6 +30,7 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-jest": "^27.2.1",
+    "html-webpack-plugin": "^5.5.1",
     "jest": "^29.5.0",
     "path": "^0.12.7",
     "react-test-renderer": "^18.2.0",
