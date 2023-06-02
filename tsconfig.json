@@ -14,7 +14,8 @@
       "@css/*": ["src/css/*"],
       "@actions": ["src/redux/actions.ts"],
       "@queries": ["src/queries/index.ts"],
-      "@config": ["config.ts"]
+      "@config": ["config.ts"],
+      "@store": ["src/redux/store.ts"]
     }
   }
 }
