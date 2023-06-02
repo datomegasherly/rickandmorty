@@ -6,7 +6,7 @@ import { AppDispatch, RootState } from "@store";
 
 /** fetch list of characters by requested page number */
 export const fetch_data =
-  (page: number = 1) =>
+  (page: number = 1, name?: string) =>
   async (dispatch: AppDispatch, getState: Function) => {
     dispatch({
       type: types.LOADING,
@@ -26,7 +26,8 @@ export const fetch_data =
     }
     const CHARACTER_LIST = charactersList(
       page,
-      state.info.count ? false : true
+      state.info.count ? false : true,
+      name ?? ""
     );
     const response: { characters?: [] } = await request(
       endpoint,
@@ -52,4 +53,11 @@ export const fetch_one = async (id: string) => {
     CHARACTER
   );
   return response;
+};
+
+export const pre_search = () => async (dispatch: AppDispatch) => {
+  dispatch({
+    type: types.SEARCH,
+    payload: false,
+  });
 };

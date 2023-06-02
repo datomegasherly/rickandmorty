@@ -65,6 +65,15 @@ const reducer = (state: state = initialState, action: any) => {
       };
     case types.LOADING:
       return { ...state, loading: action.payload };
+    // reset list and loadedList when search occured
+    case types.SEARCH:
+      return {
+        ...state,
+        list: [],
+        loadedList: [],
+        page: 1,
+        info: { ...state.info, count: 0, pages: 1, next: null, prev: null },
+      };
     default:
       return state;
   }

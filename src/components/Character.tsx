@@ -1,5 +1,5 @@
 import { fetch_one, is_loading } from "@actions";
-import { characterInterface, characterKeyInterface } from "@queries";
+import { characterInterface } from "@queries";
 import { AppDispatch } from "@store";
 import * as React from "react";
 import { useDispatch } from "react-redux";
@@ -18,8 +18,8 @@ import {
 } from "@mui/material";
 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import TableContainer from "./TableContainer";
-import TableWithHeader from "./TableWithHeader";
+import TableContainer from "@components/TableContainer";
+import TableWithHeader from "@components/TableWithHeader";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 
 const Character = () => {
@@ -51,15 +51,15 @@ const Character = () => {
         <Grid container>
           <Grid item xs={12}>
             <Button
-              variant="contained"
+              variant="outlined"
               startIcon={<ArrowBackIosNewIcon />}
               onClick={() => {
                 navigate("/");
               }}
             >
-              Back
+              Back to Home
             </Button>
-            <Paper>
+            <Paper sx={{ pt: 1, mt: 2 }}>
               <Grid container spacing={1} sx={{ p: 1 }}>
                 <Grid item xs={3}>
                   <CardMedia

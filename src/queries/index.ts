@@ -103,9 +103,13 @@ const infoQuery = `
   }
 `;
 
-export const charactersList = (page: number, fetchInfo: boolean) => gql`
+export const charactersList = (
+  page: number,
+  fetchInfo: boolean,
+  search?: string
+) => gql`
   query {
-    characters(page: ${page}) {
+    characters(page: ${page}${search ? `,filter: {name: "${search}"}` : ""}) {
       ${fetchInfo ? infoQuery : ""}
       results {
         id
