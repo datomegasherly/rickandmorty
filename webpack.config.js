@@ -11,6 +11,7 @@ module.exports = {
   target: "web",
   devServer: {
     port: "8080",
+    historyApiFallback: true,
     static: ["./public"],
     open: true,
     hot: true,
