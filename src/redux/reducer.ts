@@ -1,15 +1,17 @@
 import { types } from "./actionTypes";
 
+interface list {
+  id: string;
+  gender: string;
+  image: string;
+  name: string;
+  species: string;
+  status: string;
+  type: string;
+}
+
 interface state {
-  list: Array<{
-    id: string;
-    gender: string;
-    image: string;
-    name: string;
-    species: string;
-    status: string;
-    type: string;
-  }>;
+  list: Array<list>;
   page: number;
   info: {
     count: number;
@@ -17,10 +19,12 @@ interface state {
     next: number | null;
     prev: number | null;
   };
+  loadedList: Array<list>;
 }
 
 const initialState: state = {
   list: [],
+  loadedList: [],
   page: 1,
   info: {
     count: 0,
@@ -33,16 +37,28 @@ const initialState: state = {
 const reducer = (state: state = initialState, action: any) => {
   switch (action.type) {
     case types.FETCH:
+      // just to make sure if loadedlist changed or not, if change occured then loadedlist will be updated
+      const fetchPage = state.loadedList;
+      const changedLoadedList = fetchPage[action.payload.page - 1]
+        ? false
+        : true;
+      fetchPage[action.payload.page - 1] = action.payload.results;
       return {
         ...state,
         list: action.payload.results,
-        info: {
-          ...state.info,
-          count: action.payload.info.count,
-          pages: action.payload.info.pages,
-          next: action.payload.info.next,
-          prev: action.payload.info.prev,
-        },
+        ...(changedLoadedList ? { loadedList: fetchPage } : {}),
+        page: action.payload.page,
+        ...(action.payload.info
+          ? {
+              info: {
+                ...state.info,
+                count: action.payload.info.count,
+                pages: action.payload.info.pages,
+                next: action.payload.info.next,
+                prev: action.payload.info.prev,
+              },
+            }
+          : {}),
       };
     default:
       return state;

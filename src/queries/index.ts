@@ -94,10 +94,10 @@ const infoQuery = `
   }
 `;
 
-export const charactersList = (page: number) => gql`
+export const charactersList = (page: number, fetchInfo: boolean) => gql`
   query {
     characters(page: ${page}) {
-      ${infoQuery}
+      ${fetchInfo ? infoQuery : ""}
       results {
         id
         name
