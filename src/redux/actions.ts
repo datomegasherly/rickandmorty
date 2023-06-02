@@ -1,7 +1,7 @@
 import { types } from "./actionTypes";
 import { request } from "graphql-request";
 import { endpoint } from "@config";
-import { charactersList } from "@queries";
+import { character, characterInterface, charactersList } from "@queries";
 import { AppDispatch, RootState } from "@store";
 
 /** fetch list of characters by requested page number */
@@ -43,4 +43,13 @@ export const is_loading = (loading: boolean) => (dispatch: AppDispatch) => {
     type: types.LOADING,
     payload: loading,
   });
+};
+
+export const fetch_one = async (id: string) => {
+  const CHARACTER = character(id);
+  const response: { character: characterInterface } = await request(
+    endpoint,
+    CHARACTER
+  );
+  return response;
 };

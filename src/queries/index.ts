@@ -32,7 +32,7 @@ interface locationInterface {
   residents: residentInterface[];
 }
 
-export interface characterInterface {
+export interface characterKeyInterface {
   id: string;
   name: string;
   status: string;
@@ -40,9 +40,12 @@ export interface characterInterface {
   type: string;
   gender: string;
   image: string;
+}
+
+export interface characterInterface extends characterKeyInterface {
   location?: locationInterface;
   origin?: originInterface;
-  episode?: episodeInterface;
+  episode?: episodeInterface[];
 }
 
 /** main queries */
@@ -59,6 +62,7 @@ origin {
     species
     type
     gender
+    image
   }
 }
 `;
@@ -72,6 +76,11 @@ location {
   residents {
     id
     name
+    status
+    species
+    type
+    gender
+    image
   }
 }`;
 
@@ -107,6 +116,23 @@ export const charactersList = (page: number, fetchInfo: boolean) => gql`
         gender
         image
       }
+    }
+  }
+`;
+
+export const character = (id: string) => gql`
+  query {
+    character(id: ${id}) {
+      id
+      name
+      status
+      species
+      type
+      gender
+      image
+      ${originQuery}
+      ${locationQuery}
+      ${episodeQuery}
     }
   }
 `;

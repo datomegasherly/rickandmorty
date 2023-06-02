@@ -8,6 +8,7 @@
     "build": "Webpack .",
     "test": "jest"
   },
+  "homepage": "/",
   "keywords": [],
   "author": "",
   "license": "ISC",

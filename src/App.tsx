@@ -39,7 +39,7 @@ const App = () => {
         <Routes>
           <Route path="/">
             <Route index element={<HomePage />} />
-            <Route path="character/:userId" element={<Character />} />
+            <Route path=":userId" element={<Character />} />
             <Route path="*" element={<Navigate to={"/"} />} />
           </Route>
         </Routes>
