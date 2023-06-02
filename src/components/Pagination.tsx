@@ -16,6 +16,7 @@ const Pagination = () => {
   return (
     <Stack spacing={2}>
       <Paging
+        sx={{ m: "auto" }}
         count={info.pages}
         variant="outlined"
         onChange={(ev, currentPage: number) => {
