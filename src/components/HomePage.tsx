@@ -13,10 +13,12 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const dispatch: AppDispatch = useDispatch();
   const list = useSelector((state: RootState) => state.list);
+  const navigate = useNavigate();
   return (
     <Container maxWidth={"xl"}>
       <Grid container>
@@ -28,8 +30,22 @@ const HomePage = () => {
           <Grid container spacing={1}>
             {list.map((data: RootState["list"]) => {
               return (
-                <Grid item xs={12} sm={6} md={4} lg={4} xl={3} sx={{ mb: 2 }}>
-                  <Card sx={{ maxWidth: 345 }}>
+                <Grid
+                  item
+                  xs={12}
+                  sm={6}
+                  md={4}
+                  lg={4}
+                  xl={3}
+                  sx={{ mb: 2 }}
+                  key={data.id}
+                >
+                  <Card
+                    sx={{ maxWidth: 345 }}
+                    onClick={() => {
+                      navigate(`/character/${data.id}`);
+                    }}
+                  >
                     <CardActionArea>
                       <CardMedia
                         component="img"
