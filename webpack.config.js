@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 module.exports = {
   mode: "development",
@@ -18,7 +19,12 @@ module.exports = {
     liveReload: true,
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js", ".jsx", ".json"],
+    extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
+    plugins: [
+      new TsconfigPathsPlugin({
+        extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
+      }),
+    ],
   },
   module: {
     rules: [

@@ -12,7 +12,9 @@
     "paths": {
       "@components/*": ["src/components/*"],
       "@css/*": ["src/css/*"],
-      "@actions": ["src/redux/actions.ts"]
+      "@actions": ["src/redux/actions.ts"],
+      "@queries": ["src/queries/index.ts"],
+      "@config": ["config.ts"]
     }
   }
 }
