@@ -8,6 +8,10 @@ import { AppDispatch, RootState } from "@store";
 export const fetch_data =
   (page: number = 1) =>
   async (dispatch: AppDispatch, getState: Function) => {
+    dispatch({
+      type: types.LOADING,
+      payload: true,
+    });
     const state: RootState = getState();
     // move page to first if page is higher than pages(fetched from server) or if page is less than 1
     page = page > state.info.pages || page < 1 ? 1 : page;
@@ -33,3 +37,10 @@ export const fetch_data =
       payload: { ...response.characters, page },
     });
   };
+
+export const is_loading = (loading: boolean) => (dispatch: AppDispatch) => {
+  dispatch({
+    type: types.LOADING,
+    payload: loading,
+  });
+};

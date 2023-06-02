@@ -20,6 +20,7 @@ interface state {
     prev: number | null;
   };
   loadedList: Array<list>;
+  loading: boolean;
 }
 
 const initialState: state = {
@@ -32,6 +33,7 @@ const initialState: state = {
     next: null,
     prev: null,
   },
+  loading: true,
 };
 
 const reducer = (state: state = initialState, action: any) => {
@@ -45,6 +47,7 @@ const reducer = (state: state = initialState, action: any) => {
       fetchPage[action.payload.page - 1] = action.payload.results;
       return {
         ...state,
+        loading: false,
         list: action.payload.results,
         ...(changedLoadedList ? { loadedList: fetchPage } : {}),
         page: action.payload.page,
@@ -60,6 +63,8 @@ const reducer = (state: state = initialState, action: any) => {
             }
           : {}),
       };
+    case types.LOADING:
+      return { ...state, loading: action.payload };
     default:
       return state;
   }
