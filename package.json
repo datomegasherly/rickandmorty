@@ -5,7 +5,7 @@
   "main": "index.tsx",
   "scripts": {
     "start": "webpack-dev-server .",
-    "build": "npx Webpack .",
+    "build": "webpack .",
     "test": "jest --detectOpenHandles",
     "test:watch": "jest --watch"
   },

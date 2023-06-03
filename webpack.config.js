@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 module.exports = {
-  mode: "development",
+  mode: "production",
   entry: "./index.tsx",
   output: {
     path: path.resolve(__dirname, "public"),
