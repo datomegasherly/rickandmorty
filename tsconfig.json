@@ -15,7 +15,9 @@
       "@actions": ["src/redux/actions.ts"],
       "@queries": ["src/queries/index.ts"],
       "@config": ["config.ts"],
-      "@store": ["src/redux/store.ts"]
-    }
+      "@store": ["src/redux/store.ts"],
+      "@src/*": ["src/*"]
+    },
+    "esModuleInterop": true
   }
 }

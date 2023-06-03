@@ -23,6 +23,13 @@ import TableWithHeader from "@components/TableWithHeader";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 
 const Character = () => {
+  const { userId } = useParams();
+  const navigate = useNavigate();
+  // if userId is not a number, then redirect to home page
+  if (isNaN(Number(userId))) {
+    navigate("/");
+    return;
+  }
   const [data, setData] = React.useState<characterInterface>({
     id: "0",
     name: "",
@@ -33,8 +40,6 @@ const Character = () => {
     image: "",
   });
   const dispatch: AppDispatch = useDispatch();
-  const navigate = useNavigate();
-  const { userId } = useParams();
   const fetch = async () => {
     dispatch(is_loading(true));
     const fetch_data = await fetch_one(userId);

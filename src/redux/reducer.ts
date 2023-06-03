@@ -23,7 +23,7 @@ interface state {
   loading: boolean;
 }
 
-const initialState: state = {
+export const initialState: state = {
   list: [],
   loadedList: [],
   page: 1,
